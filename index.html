@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.S. Traders - Dynamic Industrial Gas Solutions, Manuguru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            /* Light Mode (Default - Olive Green Theme) */
+            --bg-primary: #f9fafb; /* gray-50 */
+            --bg-secondary: #ffffff; /* white */
+            --bg-accent: #16a34a; /* green-600 */
+            --bg-accent-hover: #15803d; /* green-700 */
+            --text-primary: #1f2937; /* gray-800 */
+            --text-secondary: #4b5563; /* gray-600 */
+            --text-accent: #16a34a; /* green-600 */
+            --text-on-accent: #ffffff; /* white */
+            --border-color: #e5e7eb; /* gray-200 */
+            --shadow-color: rgba(0, 0, 0, 0.08); /* Slightly softer shadow for light mode */
+            --hero-gradient-start: rgba(0, 0, 0, 0.5);
+            --hero-gradient-end: rgba(0, 0, 0, 0.7);
+            --section-title-underline: #16a34a; /* green-600 */
+            --founder-quote-bg: #f0fdf4; /* green-50 */
+            --founder-quote-border: #22c55e; /* green-500 */
+            --emergency-text: #ca8a04; /* yellow-600 for better contrast */
+        }
+
+        .dark-mode {
+            /* Dark Mode */
+            --bg-primary: #111827; /* gray-900 */
+            --bg-secondary: #1f2937; /* gray-800 */
+            --bg-accent: #22c55e; /* green-500 */
+            --bg-accent-hover: #16a34a; /* green-600 */
+            --text-primary: #f9fafb; /* gray-50 */
+            --text-secondary: #9ca3af; /* gray-400 */
+            --text-accent: #22c55e; /* green-500 */
+            --text-on-accent: #ffffff; /* white */
+            --border-color: #374151; /* gray-700 */
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hero-gradient-start: rgba(0, 0, 0, 0.7);
+            --hero-gradient-end: rgba(0, 0, 0, 0.9);
+            --section-title-underline: #22c55e; /* green-500 */
+            --founder-quote-bg: #1f2937; /* gray-800 */
+            --founder-quote-border: #16a34a; /* green-600 */
+            --emergency-text: #fde047; /* yellow-300 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* General Styles using CSS Variables */
+        .hero-bg {
+            background-image: linear-gradient(var(--hero-gradient-start), var(--hero-gradient-end)), url('https://placehold.co/1920x1080/556B2F/e2e8f0?text=S.S.+Traders+Manuguru+Operations');
+            background-size: cover;
+            background-position: center;
+        }
+        header {
+            background-color: var(--bg-secondary);
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+        nav a, #mobile-menu a {
+            color: var(--text-secondary);
+        }
+        nav a:hover, #mobile-menu a:hover {
+            color: var(--text-accent);
+        }
+        #mobile-menu {
+             background-color: var(--bg-secondary);
+        }
+        .cta-button {
+            background-color: var(--bg-accent);
+            color: var(--text-on-accent);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .cta-button:hover {
+            background-color: var(--bg-accent-hover);
+            transform: translateY(-3px) scale(1.03); /* Adjusted hover effect */
+            box-shadow: 0 6px 15px var(--shadow-color);
+        }
+        .section-title::after {
+            background-color: var(--section-title-underline);
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+        .bg-section-primary { background-color: var(--bg-primary); }
+        .bg-section-secondary { background-color: var(--bg-secondary); }
+        
+        .product-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+        .product-card:hover {
+            transform: translateY(-8px); /* Keep lift effect */
+            box-shadow: 0 12px 25px var(--shadow-color); /* Enhanced shadow */
+        }
+        .product-card img.product-image {
+            max-height: 150px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .founder-section, .client-card {
+            background-color: var(--bg-secondary); /* Consistent background */
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+        .founder-quote {
+            background-color: var(--founder-quote-bg);
+            border-left-color: var(--founder-quote-border);
+            border-left-width: 4px;
+            border-radius: 0 0.25rem 0.25rem 0; /* Slight rounding */
+        }
+        .contact-form-bg {
+            background-color: var(--bg-secondary);
+            box-shadow: 0 8px 16px var(--shadow-color);
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 0.375rem; /* rounded-md */
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+            --tw-ring-opacity: 1; /* Ensure ring is visible */
+            --tw-ring-color: var(--text-accent);
+            border-color: var(--text-accent);
+            box-shadow: 0 0 0 2px var(--text-accent); /* Add ring effect */
+            outline: none; /* Remove default outline */
+        }
+        footer {
+            background-color: #1f2937; /* gray-800 - keeping footer dark */
+            color: #d1d5db; /* gray-300 */
+        }
+        footer a:hover {
+            color: var(--text-accent);
+        }
+        footer .emergency-text {
+            color: var(--emergency-text);
+            font-weight: 600; /* semibold */
+        }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .animate-on-scroll {
+            opacity: 0; /* Start hidden */
+            /* Use animation properties */
+            animation-fill-mode: forwards; /* Keep state after animation */
+        }
+        .animate-on-scroll.is-visible {
+            /* Apply animation when visible */
+            animation-name: slideInUp; /* Or fadeIn */
+            animation-duration: 0.7s; /* Control speed */
+            animation-timing-function: ease-out;
+        }
+
+        /* Theme Toggle Button */
+        #theme-toggle, #theme-toggle-mobile {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 1.25rem; /* Slightly smaller */
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 50%;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+            display: flex; /* Center icon */
+            align-items: center;
+            justify-content: center;
+        }
+        #theme-toggle:hover, #theme-toggle-mobile:hover {
+            color: var(--text-accent);
+            background-color: var(--bg-primary); /* Use primary bg for subtle hover */
+            border-color: var(--text-accent);
+            transform: rotate(15deg);
+        }
+
+        html, body { height: 100%; display: flex; flex-direction: column; }
+        main { flex-grow: 1; }
+        .client-logo { max-height: 80px; transition: transform 0.3s ease; margin-left: auto; margin-right: auto; }
+        .client-logo:hover { transform: scale(1.05); }
+        .founder-image { width: 128px; height: 128px; border-radius: 50%; object-fit: cover; margin-left: auto; margin-right: auto; border: 3px solid var(--text-accent); }
+    </style>
+</head>
+<body class="text-gray-800"> <header class="shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold" style="color: var(--text-accent);">
+                S.S. Traders
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#home" class="px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
+                <a href="#about" class="px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">About Us</a>
+                <a href="#products" class="px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Products</a>
+                <a href="#clients" class="px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Our Clients</a>
+                <a href="#safety" class="px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Safety</a>
+                <a href="#contact" class="px-3 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+                <a href="#contact" class="cta-button font-semibold px-5 py-2">Get a Quote</a>
+                <button id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i> </button>
+            </div>
+            <div class="md:hidden flex items-center">
+                 <button id="theme-toggle-mobile" class="mr-4" aria-label="Toggle theme mobile">
+                    <i class="fas fa-moon"></i> </button>
+                <button id="mobile-menu-button" class="focus:outline-none p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg class="w-7 h-7" style="color: var(--text-secondary);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden shadow-lg border-t" style="border-color: var(--border-color);">
+            <a href="#home" class="block px-6 py-3 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">Home</a>
+            <a href="#about" class="block px-6 py-3 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">About Us</a>
+            <a href="#products" class="block px-6 py-3 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">Products</a>
+            <a href="#clients" class="block px-6 py-3 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">Our Clients</a>
+            <a href="#safety" class="block px-6 py-3 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">Safety</a>
+            <a href="#contact" class="block px-6 py-3 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
+            <a href="#contact" class="block px-6 py-4 text-center font-semibold cta-button">Get a Quote</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-bg text-white py-24 md:py-40">
+            <div class="container mx-auto px-6 text-center animate-on-scroll">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Your Industry, Our Gases, Shared Success.</h1>
+                <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
+                    S.S. Traders: Manuguru's trusted provider of top-tier industrial gases, innovative solutions, and dedicated service for your business.
+                </p>
+                <a href="#products" class="cta-button font-bold py-3 px-10 text-lg inline-block">
+                    Discover Our Solutions
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 md:py-20 bg-section-secondary">
+            <div class="container mx-auto px-6">
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 section-title" style="color: var(--text-primary);">About S.S. Traders</h2>
+                     <p class="text-center mb-12 md:mb-16 max-w-3xl mx-auto" style="color: var(--text-secondary);">
+                        Our journey began in 1996, right here in Manuguru. Recognizing a critical gap in the local market, the founders of S.S. Traders embarked on a mission. Extensive market research revealed that businesses in our region faced significant challenges in sourcing industrial gases, often having to travel over 100 kilometers to secure their supplies. This firsthand understanding of local needs became the bedrock of S.S. Traders, establishing us as a trusted name in industrial, medical, and specialty gases. Our focus has always been on quality, safety, and customer partnership, delivering solutions that power your industry and support our community.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+                    <div class="p-6 md:p-8 rounded-xl founder-section animate-on-scroll">
+                        <div class="text-center mb-5">
+                            <img src="https://assets.onecompiler.app/43fgz2bv4/43fgz2qyp/WhatsApp%20Image%202025-05-06%20at%2023.07.38.jpeg" 
+                                 alt="Laxmi Prasad Chava, Founder of S.S. Traders" 
+                                 class="founder-image"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/128x128/16a34a/ffffff?text=LP'; this.alt='Laxmi Prasad Chava - Placeholder';">
+                        </div>
+                        <h3 class="text-2xl font-semibold mt-6 mb-4 text-center" style="color: var(--text-primary);">Meet Our Founder: Laxmi Prasad Chava</h3>
+                         <p class="mb-4 text-sm text-justify leading-relaxed" style="color: var(--text-secondary);">
+                            Driven by a vision to serve the local industrial community of Manuguru and beyond, <strong class="font-semibold">Laxmi Prasad Chava</strong>, our first-generation founder, established S.S. Traders with an unwavering commitment to reliability and customer-centric service. The early challenges, including the arduous task of sourcing materials from distant locations, only strengthened this resolve. This experience shaped the company's core ethos of perseverance, dedication to meeting client needs, and ensuring that essential resources are always within reach for our partners, including vital local industries.
+                        </p>
+                        <blockquote class="mt-5 p-4 founder-quote italic text-sm" style="color: var(--text-secondary);">
+                            <p>"Our goal was simple: to make essential industrial resources accessible and to build lasting partnerships based on trust, consistent supply, and a genuine understanding of our customers' operational needs."</p>
+                            <footer class="mt-2 text-xs">- <cite>Laxmi Prasad Chava</cite></footer>
+                        </blockquote>
+                    </div>
+                    <div class="pt-0 md:pt-0 animate-on-scroll">
+                        <h3 class="text-2xl font-semibold mb-5" style="color: var(--text-primary);">Our Core Principles</h3>
+                         <p class="mb-5 leading-relaxed" style="color: var(--text-secondary);">
+                            Our mission is to be the premier supplier of gas products and services, improving your operational efficiency and commitment to sustainability. We operate on principles of excellence, safety, and client focus.
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 leading-relaxed" style="color: var(--text-secondary);">
+                            <li><i class="fas fa-check-circle mr-2" style="color: var(--text-accent);"></i>Unwavering Quality & Purity Standards</li>
+                            <li><i class="fas fa-leaf mr-2" style="color: var(--text-accent);"></i>Emphasis on Eco-Friendly Practices</li>
+                            <li><i class="fas fa-headset mr-2" style="color: var(--text-accent);"></i>Responsive & Personalized Customer Service</li>
+                            <li><i class="fas fa-lightbulb mr-2" style="color: var(--text-accent);"></i>Driving Innovation in Gas Technology</li>
+                            <li><i class="fas fa-hands-helping mr-2" style="color: var(--text-accent);"></i>Supporting Local Industries and Growth</li>
+                        </ul>
+                         <a href="#contact" class="mt-8 inline-block cta-button font-semibold py-3 px-8 text-base">
+                            Partner With Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="py-16 md:py-20 bg-section-primary">
+            <div class="container mx-auto px-6">
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 section-title" style="color: var(--text-primary);">Our Gas Offerings</h2>
+                     <p class="text-center mb-12 md:mb-16 max-w-3xl mx-auto" style="color: var(--text-secondary);">
+                        Explore our wide selection of industrial gases, including Oxygen, Nitrogen, Acetylene, Medical Oxygen, Carbon Dioxide, and Argon, tailored to meet the specific demands of your operations. All products meet stringent purity and quality benchmarks.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card p-6 animate-on-scroll">
+                        <div>
+                            <div class="mb-5 text-center" style="color: var(--text-accent);">
+                                 <i class="fas fa-wind fa-3x"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center" style="color: var(--text-primary);">Oxygen (O₂)</h3>
+                            <img src="https://placehold.co/300x200/a3e6cb/1e40af?text=Oxygen+Cylinder" alt="Oxygen Gas Cylinder" class="w-full h-auto rounded-md mx-auto product-image">
+                             <p class="text-sm mb-3 text-center" style="color: var(--text-secondary);">
+                                High-purity oxygen for industrial welding, cutting, and various manufacturing processes.
+                            </p>
+                            <p class="text-sm mb-1 text-center font-medium" style="color: var(--text-primary);">Price per Cubic Meter: ₹72</p>
+                            <p class="text-sm mb-4 text-center font-medium" style="color: var(--text-primary);">Price per Cylinder: ₹500</p>
+                        </div>
+                        <a href="#contact" class="block text-center font-semibold mt-auto" style="color: var(--text-accent);">Inquire Now &rarr;</a>
+                    </div>
+                     <div class="product-card p-6 animate-on-scroll" style="animation-delay: 0.1s;">
+                        <div>
+                            <div class="mb-5 text-center" style="color: #a3e635;">
+                                 <i class="fas fa-snowflake fa-3x"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center" style="color: var(--text-primary);">Nitrogen (N₂)</h3>
+                            <img src="https://placehold.co/300x200/d9f99d/166534?text=Nitrogen+Supply" alt="Nitrogen Gas Supply" class="w-full h-auto rounded-md mx-auto product-image">
+                             <p class="text-sm mb-3 text-center" style="color: var(--text-secondary);">
+                                Versatile nitrogen for blanketing, purging, food packaging, and cryogenic applications.
+                            </p>
+                            <p class="text-sm mb-1 text-center font-medium" style="color: var(--text-primary);">Price per Cubic Meter: ₹85</p>
+                            <p class="text-sm mb-4 text-center font-medium" style="color: var(--text-primary);">Price per Cylinder: ₹550</p>
+                        </div>
+                        <a href="#contact" class="block text-center font-semibold mt-auto" style="color: #a3e635;">Inquire Now &rarr;</a>
+                    </div>
+                    <div class="product-card p-6 animate-on-scroll" style="animation-delay: 0.2s;">
+                        <div>
+                            <div class="mb-5 text-center" style="color: #f97316;">
+                                 <i class="fas fa-fire-alt fa-3x"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center" style="color: var(--text-primary);">Acetylene (C₂H₂)</h3>
+                            <img src="https://placehold.co/300x200/fed7aa/9a3412?text=Acetylene+Tanks" alt="Acetylene Gas Tanks" class="w-full h-auto rounded-md mx-auto product-image">
+                             <p class="text-sm mb-3 text-center" style="color: var(--text-secondary);">
+                                High-temperature flame acetylene for welding, cutting, and brazing applications.
+                            </p>
+                            <p class="text-sm mb-1 text-center font-medium" style="color: var(--text-primary);">Price per Cubic Meter: ₹620</p>
+                            <p class="text-sm mb-4 text-center font-medium" style="color: var(--text-primary);">Price per Cylinder: ₹4200</p>
+                        </div>
+                        <a href="#contact" class="block text-center font-semibold mt-auto" style="color: #f97316;">Inquire Now &rarr;</a>
+                    </div>
+                    <div class="product-card p-6 animate-on-scroll" style="animation-delay: 0.3s;">
+                        <div>
+                            <div class="mb-5 text-center" style="color: #ef4444;">
+                                 <i class="fas fa-briefcase-medical fa-3x"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center" style="color: var(--text-primary);">Medical Oxygen (O₂)</h3>
+                            <img src="https://placehold.co/300x200/fecaca/991b1b?text=Medical+Oxygen" alt="Medical Oxygen Supply" class="w-full h-auto rounded-md mx-auto product-image">
+                             <p class="text-sm mb-3 text-center" style="color: var(--text-secondary);">
+                               High-purity medical grade oxygen for hospitals, clinics, and home healthcare. Certified quality.
+                            </p>
+                            <p class="text-sm mb-1 text-center font-medium" style="color: var(--text-primary);">Price per Cubic Meter: ₹80</p>
+                            <p class="text-sm mb-4 text-center font-medium" style="color: var(--text-primary);">Price per Cylinder: ₹550</p>
+                        </div>
+                        <a href="#contact" class="block text-center font-semibold mt-auto" style="color: #ef4444;">Inquire Now &rarr;</a>
+                    </div>
+                    <div class="product-card p-6 animate-on-scroll" style="animation-delay: 0.4s;">
+                        <div>
+                            <div class="mb-5 text-center" style="color: #6b7280;">
+                                 <i class="fas fa-wine-bottle fa-3x"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center" style="color: var(--text-primary);">Carbon Dioxide (CO₂)</h3>
+                            <img src="https://placehold.co/300x200/d1d5db/374151?text=CO2+Tanks" alt="Carbon Dioxide Tanks" class="w-full h-auto rounded-md mx-auto product-image">
+                             <p class="text-sm mb-3 text-center" style="color: var(--text-secondary);">
+                                Food-grade and industrial CO₂ for beverage carbonation, welding, and fire suppression systems.
+                            </p>
+                            <p class="text-sm mb-1 text-center font-medium" style="color: var(--text-primary);">Price per KG: ₹40</p>
+                            <p class="text-sm mb-4 text-center font-medium" style="color: var(--text-primary);">Price per Cylinder: ₹1100</p>
+                        </div>
+                        <a href="#contact" class="block text-center font-semibold mt-auto" style="color: #6b7280;">Inquire Now &rarr;</a>
+                    </div>
+                    <div class="product-card p-6 animate-on-scroll" style="animation-delay: 0.5s;">
+                        <div>
+                            <div class="mb-5 text-center" style="color: #0ea5e9;">
+                                 <i class="fas fa-shield-alt fa-3x"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2 text-center" style="color: var(--text-primary);">Argon (Ar)</h3>
+                            <img src="https://placehold.co/300x200/bae6fd/0c4a6e?text=Argon+Cylinders" alt="Argon Gas Cylinders" class="w-full h-auto rounded-md mx-auto product-image">
+                             <p class="text-sm mb-3 text-center" style="color: var(--text-secondary);">
+                                Inert argon gas for TIG and MIG welding, lighting, and as a protective atmosphere. <br>
+                                <span class="font-semibold" style="color: #f97316;">Supply temporarily unavailable. Please contact us for updates.</span>
+                            </p>
+                            <p class="text-sm mb-1 text-center font-medium" style="color: var(--text-primary);">Price per Cubic Meter: Contact for Availability</p>
+                            <p class="text-sm mb-4 text-center font-medium" style="color: var(--text-primary);">Price per Cylinder: Contact for Availability</p>
+                        </div>
+                         <a href="#contact" class="block text-center font-semibold mt-auto" style="color: #0ea5e9;">Inquire Now &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="clients" class="py-16 md:py-20 bg-section-secondary">
+            <div class="container mx-auto px-6">
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 section-title" style="color: var(--text-primary);">Serving Our Community & Key Industries</h2>
+                     <p class="text-center mb-12 md:mb-16 max-w-3xl mx-auto" style="color: var(--text-secondary);">
+                        S.S. Traders is proud to be a trusted supplier to major industrial operations in the region, contributing to the growth and sustenance of our local economy. We are committed to providing reliable and timely gas solutions to all our partners.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="client-card p-6 rounded-xl shadow-lg text-center animate-on-scroll">
+                        <img src="https://assets.onecompiler.app/43fgz2bv4/43fgz2qyp/Screenshot%202025-05-06%20at%2011.27.04%E2%80%AFPM.png" 
+                             alt="Singareni Collieries Company Limited Logo" 
+                             class="client-logo mb-5"
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x100/cccccc/333333?text=SCCL+Logo';">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary);">Singareni Collieries Company Ltd.</h3>
+                         <p class="text-sm" style="color: var(--text-secondary);">
+                            Providing essential industrial gases to support the vital operations of one of India's largest coal mining companies.
+                        </p>
+                    </div>
+                    <div class="client-card p-6 rounded-xl shadow-lg text-center animate-on-scroll" style="animation-delay: 0.2s;">
+                        <img src="https://assets.onecompiler.app/43fgz2bv4/43fgz2qyp/Screenshot%202025-05-06%20at%2011.24.53%E2%80%AFPM.png" 
+                             alt="Heavy Water Plant Manuguru Logo" 
+                             class="client-logo mb-5"
+                             onerror="this.onerror=null; this.src='https://placehold.co/200x100/cccccc/333333?text=HWP+Logo';">
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary);">Heavy Water Plant, Manuguru</h3>
+                         <p class="text-sm" style="color: var(--text-secondary);">
+                            Supplying high-purity gases critical for the processes at the Heavy Water Plant, contributing to national energy security.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="safety" class="py-16 md:py-20 text-white" style="background-color: var(--bg-accent);">
+            <div class="container mx-auto px-6 text-center animate-on-scroll">
+                <i class="fas fa-shield-alt fa-4x mb-6"></i>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title !text-white after:!bg-white">Our Commitment to Safety</h2>
+                 <p class="text-lg mb-10 max-w-2xl mx-auto">
+                    Safety is paramount. We follow rigorous safety protocols in all aspects of gas handling, storage, and transport. Our personnel are highly trained to protect our team, clients, and the environment.
+                </p>
+                <a href="#contact" class="cta-button bg-white hover:bg-gray-100 font-bold py-3 px-10 text-lg inline-block" style="color: var(--bg-accent);"> 
+                    Request Safety Data Sheets
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-20 bg-section-primary">
+            <div class="container mx-auto px-6">
+                 <div class="animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 section-title" style="color: var(--text-primary);">Connect With Us</h2>
+                     <p class="text-center mb-12 md:mb-16 max-w-2xl mx-auto" style="color: var(--text-secondary);">
+                        Ready to discuss your gas requirements or need a quotation? Our expert team at S.S. Traders, Manuguru, is here to help. Use the form below or reach out to us directly.
+                    </p>
+                </div>
+                <div class="max-w-2xl mx-auto p-8 md:p-10 rounded-xl shadow-xl contact-form-bg animate-on-scroll">
+                    <form id="contactForm">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block font-semibold mb-2" style="color: var(--text-secondary);">Full Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block font-semibold mb-2" style="color: var(--text-secondary);">Email Address</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none" required>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="company" class="block font-semibold mb-2" style="color: var(--text-secondary);">Company (Optional)</label>
+                            <input type="text" id="company" name="company" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none">
+                        </div>
+                        <div class="mb-6">
+                            <label for="gas_type" class="block font-semibold mb-2" style="color: var(--text-secondary);">Gas of Interest</label>
+                            <select id="gas_type" name="gas_type" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none">
+                                <option value="">Select a gas...</option>
+                                <option value="oxygen">Oxygen</option>
+                                <option value="nitrogen">Nitrogen</option>
+                                <option value="acetylene">Acetylene</option>
+                                <option value="argon">Argon</option>
+                                <option value="medical-oxygen">Medical Oxygen</option>
+                                <option value="co2">Carbon Dioxide</option>
+                                <option value="other">Other / Not Listed</option>
+                            </select>
+                        </div>
+                        <div class="mb-8">
+                            <label for="message" class="block font-semibold mb-2" style="color: var(--text-secondary);">Your Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="cta-button font-bold py-3 px-10 text-lg w-full md:w-auto">
+                                Send Inquiry
+                            </button>
+                        </div>
+                    </form>
+                    <div id="form-feedback" class="mt-6 text-center"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 md:py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-5">S.S. Traders</h3>
+                    <p class="mb-2">
+                        Main Road, Ashok Nagar,<br>
+                        Manuguru - 507117,<br>
+                        Bhadradri Kothagudem Dist., Telangana
+                    </p>
+                    <p class="mb-1"><i class="fas fa-phone mr-2"></i> Ph: 08746-220800</p>
+                    <p class="mb-1"><i class="fas fa-mobile-alt mr-2"></i> Mob: 94401 16062</p>
+                    <p class="mb-2"><i class="fas fa-mobile-alt mr-2"></i> Mob: 94922 62662</p>
+                    <p><i class="fas fa-envelope mr-2"></i> laxmiprasadch@gmail.com</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-5">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="transition duration-300">Home</a></li>
+                        <li><a href="#about" class="transition duration-300">About Us</a></li>
+                        <li><a href="#products" class="transition duration-300">Our Products</a></li>
+                        <li><a href="#clients" class="transition duration-300">Our Clients</a></li>
+                        <li><a href="#safety" class="transition duration-300">Safety</a></li>
+                        <li><a href="/your-privacy-policy-page" class="transition duration-300">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-5">Company Information</h3>
+                     <p class="mt-0 text-sm">
+                        GSTIN: 36AAUPC0638C1ZY
+                    </p>
+                     <p class="mt-3 text-sm leading-relaxed">
+                        <strong>Business Hours:</strong><br>
+                        Mon - Sat: 9:00 AM - 6:00 PM<br>
+                        Sunday: Holiday<br>
+                        <span class="emergency-text">24/7/365 available for Medical Oxygen emergencies.</span>
+                    </p>
+                </div>
+            </div>
+            <hr class="my-8 md:my-10" style="border-color: #4b5563;">
+            <div class="text-center text-sm">
+                &copy; <span id="currentYear"></span> S.S. Traders. All Rights Reserved. Website by [Your Name/Company if desired].
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const body = document.body;
+        const moonIcon = 'fa-moon';
+        const sunIcon = 'fa-sun';
+
+        function setIcon(isDarkMode) {
+            const iconClass = isDarkMode ? sunIcon : moonIcon;
+            if (themeToggle) themeToggle.querySelector('i').className = `fas ${iconClass}`;
+            if (themeToggleMobile) themeToggleMobile.querySelector('i').className = `fas ${iconClass}`;
+        }
+
+        function applyTheme(theme) {
+            body.classList.remove('light-mode', 'dark-mode'); // Clear previous theme
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                setIcon(true);
+            } else {
+                body.classList.add('light-mode'); // Add light-mode class for clarity if needed
+                setIcon(false);
+            }
+        }
+        
+        // Load saved theme or detect system preference
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme); // Apply theme on initial load
+
+        function toggleTheme() {
+            const isDarkMode = body.classList.contains('dark-mode');
+            const newTheme = isDarkMode ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+        if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.classList.toggle('rotate-90'); // Example animation
+            });
+        }
+
+        // Smooth scrolling for anchor links & close mobile menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Check if mobile menu exists and is open before trying to close it
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                     if (mobileMenu.contains(e.target)) { // Only close if a link *inside* the menu was clicked
+                        mobileMenu.classList.add('hidden');
+                         if(mobileMenuButton) mobileMenuButton.classList.remove('rotate-90');
+                    }
+                }
+
+                if (targetElement) {
+                    // Use scrollIntoView for smooth scrolling
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start' // Aligns the top of the target element to the top of the viewport
+                    });
+                }
+            });
+        });
+
+        // Set current year in footer
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('form-feedback');
+        if(contactForm && formFeedback) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+                
+                // Ensure elements exist before accessing value
+                const name = nameInput ? nameInput.value : '';
+                const email = emailInput ? emailInput.value : '';
+                const message = messageInput ? messageInput.value : '';
+
+                if (!name || !email || !message) {
+                    formFeedback.textContent = 'Please fill in all required fields.';
+                    formFeedback.className = 'mt-6 text-center text-red-500 font-semibold';
+                    return;
+                }
+                
+                // Simulate submission (replace with actual backend call)
+                console.log('Form submitted (simulated):', {
+                    name: name, email: email, 
+                    company: document.getElementById('company')?.value || '', // Use optional chaining
+                    gas_type: document.getElementById('gas_type')?.value || '', // Use optional chaining
+                    message: message
+                });
+
+                formFeedback.textContent = 'Thank you! Your message has been sent successfully.';
+                formFeedback.className = 'mt-6 text-center font-semibold';
+                formFeedback.style.color = 'var(--text-accent)'; // Use CSS variable for color
+                contactForm.reset(); 
+
+                setTimeout(() => {
+                    formFeedback.textContent = '';
+                    formFeedback.className = 'mt-6 text-center';
+                }, 6000);
+            });
+        }
+
+        // Scroll Animations using Intersection Observer (More Performant)
+        const scrollElements = document.querySelectorAll('.animate-on-scroll');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Optional: Unobserve after animation to save resources
+                    // observer.unobserve(entry.target); 
+                } 
+                // Optional: Remove class if scrolling back up
+                // else {
+                //     entry.target.classList.remove('is-visible');
+                // }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        scrollElements.forEach(el => {
+            observer.observe(el);
+        });
+
+    </script>
+
+</body>
+</html>
